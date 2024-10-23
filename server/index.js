@@ -7,7 +7,7 @@ const app = express();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 app.post('/webhook', bodyParser.raw({ type: 'application/json' }), (req, res) => {
-  const endpointSecret = 'whsec_0dfe9bb96f8b80b48296433fa145670b5dc5893a13fea5ab6ddc1c65e6d08595';
+  const endpointSecret = process.env.WEBHOOK_ENDPOINT_SECRET;
   const sig = req.headers['stripe-signature'];
   
   let event;
